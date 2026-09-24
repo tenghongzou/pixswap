@@ -1,5 +1,6 @@
-import ImageConverter, { JPG, PNG } from '@/components/ImageConverter'
+import PairPage from '@/components/PairPage'
+import { JPG, PNG } from '@/lib/formats'
 
 export default function PngToJpgPage() {
-  return <ImageConverter from={PNG} to={JPG} />
+  return <PairPage from={PNG} to={JPG} />
 }

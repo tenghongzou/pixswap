@@ -5,6 +5,8 @@ const nextConfig = {
   output: 'export',
   // GitHub Pages 專案頁位於 /<repo> 子路徑，由 CI 注入
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
+  // 輸出成 jpg-to-png/index.html，GitHub Pages 重新整理時才不會 404
+  trailingSlash: true,
   images: { unoptimized: true },
 }
 
