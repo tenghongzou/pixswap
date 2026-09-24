@@ -1,12 +1,5 @@
-import React from 'react'
+import ImageConverter, { JPG, PNG } from '@/components/ImageConverter'
 
-const PngToJpg: React.FC = () => {
-    return (
-        <div>
-            <h1>PNG to JPG</h1>
-            {/* 編寫頁面內容 */}
-        </div>
-    )
+export default function PngToJpgPage() {
+  return <ImageConverter from={PNG} to={JPG} />
 }
-
-export default PngToJpg

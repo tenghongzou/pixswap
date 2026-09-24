@@ -1,19 +1,18 @@
-import React from 'react'
 import Link from 'next/link'
 
-const IndexPage: React.FC = () => {
-    return (
-        <div>
-            <h1>歡迎來到我的網站</h1>
-            <p>這是一個Next.js應用程式的首頁</p>
-            <Link legacyBehavior href="/jpg-to-png">
-                <a>前往JPG to PNG頁面</a>
-            </Link>
-            <Link legacyBehavior href="/png-to-jpg">
-                <a>前往PNG to JPG頁面</a>
-            </Link>
-        </div>
-    )
+export default function IndexPage() {
+  return (
+    <main>
+      <h1>Image Tools</h1>
+      <p className="hint">在瀏覽器內完成的圖片格式轉換工具。</p>
+      <ul className="links">
+        <li>
+          <Link href="/jpg-to-png">JPG to PNG</Link>
+        </li>
+        <li>
+          <Link href="/png-to-jpg">PNG to JPG</Link>
+        </li>
+      </ul>
+    </main>
+  )
 }
-
-export default IndexPage

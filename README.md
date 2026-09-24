@@ -1,38 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# pixswap
 
-## Getting Started
+在瀏覽器內完成的圖片格式轉換工具。所有轉換都透過 Canvas API 在使用者裝置上執行，**圖片不會上傳到任何伺服器**。
 
-First, run the development server:
+線上版：<https://tenghongzou.github.io/pixswap/>
+
+## 功能
+
+| 頁面 | 說明 |
+|---|---|
+| `/jpg-to-png` | JPG 轉 PNG |
+| `/png-to-jpg` | PNG 轉 JPG，可調整品質；透明區域會以白底填滿 |
+
+- 支援一次選取多個檔案批次轉換
+- 轉換後可預覽、查看檔案大小並直接下載
+
+## 技術
+
+- [Next.js](https://nextjs.org/) 16（Pages Router，`output: 'export'` 靜態匯出）
+- React 19、TypeScript 6
+- ESLint 9（flat config，`eslint-config-next`）
+- GitHub Actions 自動部署到 GitHub Pages
+
+## 開發
+
+需求：Node.js 20.9 以上、Yarn 1.x
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+yarn install
+yarn dev      # 開發伺服器 http://localhost:3000
+yarn lint     # ESLint
+yarn build    # 靜態匯出到 out/
+yarn start    # 以靜態伺服器預覽 out/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 專案結構
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+src/
+├── components/
+│   └── ImageConverter.tsx   # 共用轉檔元件（Canvas 轉檔、下載、預覽）
+├── pages/
+│   ├── _app.tsx
+│   ├── index.tsx            # 首頁
+│   ├── jpg-to-png.tsx
+│   └── png-to-jpg.tsx
+└── styles/
+    └── globals.css
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+新增轉換類型時，在 `ImageConverter.tsx` 定義新的 `Format`，再新增一個頁面傳入 `from` / `to` 即可。
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## 部署
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+push 到 `master` 會觸發 `.github/workflows/deploy.yml`：
 
-## Learn More
+1. `yarn lint` → `yarn build`
+2. build 時以 `NEXT_PUBLIC_BASE_PATH=/<repo 名稱>` 設定子路徑
+3. 將 `out/` 發佈到 `gh-pages` 分支
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+GitHub repo 的 **Settings → Pages** 來源需設為 `gh-pages` 分支。
