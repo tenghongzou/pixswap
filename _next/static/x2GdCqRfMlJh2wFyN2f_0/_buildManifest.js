@@ -1,15 +1,18 @@
 self.__BUILD_MANIFEST = {
   "/": [
-    "static/chunks/1w53ioqkvrqsz.js"
+    "static/chunks/2yk667y7cy2hr.js"
+  ],
+  "/404": [
+    "static/chunks/2a5xe-4bex_9h.js"
   ],
   "/_error": [
-    "static/chunks/29klpikilsyjl.js"
+    "static/chunks/3lj48gddchs66.js"
   ],
   "/jpg-to-png": [
-    "static/chunks/2-tph5_ufm_bz.js"
+    "static/chunks/11fpyf1ikor7j.js"
   ],
   "/png-to-jpg": [
-    "static/chunks/2hq749jn8ecbu.js"
+    "static/chunks/0aasr4w5u99jb.js"
   ],
   "__rewrites": {
     "afterFiles": [],
@@ -18,6 +21,7 @@ self.__BUILD_MANIFEST = {
   },
   "sortedPages": [
     "/",
+    "/404",
     "/_app",
     "/_error",
     "/jpg-to-png",
